@@ -1,18 +1,19 @@
 function createHeartFrame() {
     const container = document.getElementById('heart-frame-container');
-    container.innerHTML = ''; // ล้างค่าเก่าก่อนสร้างใหม่
+    container.innerHTML = ''; 
     
-    const totalHearts = 50; 
+    // 1. ลดจำนวนหัวใจลงเหลือ 36 เพื่อไม่ให้เบียดกันจนซ้อนทับ
+    const totalHearts = 36; 
     const screenWidth = window.innerWidth / 2;
     const screenHeight = window.innerHeight / 2;
     
-    // ปรับ scale เป็น 28 เพื่อขยายกรอบให้กว้างพ้นตัวหนังสือ
-    const scale = 28; 
+    // 2. ปรับขนาด scale เป็น 32 เพื่อให้กรอบใหญ่พ้นตัวหนังสือ
+    const scale = 32; 
 
     for (let i = 0; i < totalHearts; i++) {
         const t = (i / totalHearts) * Math.PI * 2;
         
-        // สูตร Heart Curve
+        // สูตร Heart Curve (เนียนกว่าเดิม)
         const x = 16 * Math.pow(Math.sin(t), 3);
         const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 
@@ -20,9 +21,9 @@ function createHeartFrame() {
         heart.className = 'frame-heart';
         heart.innerHTML = '♡';
         
-        // ขยับแกน Y ลงมานิดหน่อย (+20) เพื่อให้ข้อความอยู่กึ่งกลางรูปหัวใจพอดี
+        // 3. ปรับตำแหน่งแกน Y ให้สมดุล (+30) เพื่อไม่ให้ส่วนโค้งบนทับ "Happy New Year"
         heart.style.left = (screenWidth + x * scale) + 'px';
-        heart.style.top = (screenHeight + y * scale + 20) + 'px';
+        heart.style.top = (screenHeight + y * scale + 30) + 'px';
         
         container.appendChild(heart);
     }
