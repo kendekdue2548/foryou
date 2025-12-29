@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year With Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="love-container">
+        <h1 class="main-title">Happy New Year</h1>
+        <div class="heart">❤</div>
+        <h2 class="sub-title">WITH LOVE</h2>
+    </div>
+
+    <script>
+        for (let i = 0; i < 50; i++) {
+            let sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            let size = Math.random() * 4 + 'px';
+            sparkle.style.width = size;
+            sparkle.style.height = size;
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            document.body.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
