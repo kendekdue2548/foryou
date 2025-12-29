@@ -1,66 +1,29 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    /* พื้นหลังไล่สีม่วงเข้ม-ดำ ดูหรูหรา */
-    background: radial-gradient(circle at center, #2d0b16 0%, #000000 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* โค้ดเดิมคงไว้ แล้วเพิ่มส่วนนี้ต่อท้ายครับ */
+
+.button-wrapper {
+    margin-top: 30px;
+    z-index: 20;
+    position: relative;
 }
 
-.main-content {
-    text-align: center;
-    color: white;
-    z-index: 10;
-}
-
-.text-hny {
-    font-family: 'Great Vibes', cursive;
-    font-size: 5rem;
-    margin: 0;
-    color: #fff;
-    /* แสงเรืองรองสีชมพู */
-    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 40px #ff3366;
-    animation: floating 3s ease-in-out infinite;
-}
-
-.text-love {
+.btn-click {
+    padding: 12px 35px;
     font-family: 'Kanit', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 8px;
-    margin-top: 10px;
-    color: #ffb3c1;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 51, 102, 0.2); /* สีชมพูโปร่งแสง */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้า */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+    display: inline-block;
 }
 
-/* ซองจดหมาย ♡ */
-.envelope-dot {
-    position: absolute;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 12px;
-    text-shadow: 0 0 5px #ff3366;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s;
-}
-
-/* หัวใจตก */
-.falling-heart {
-    position: absolute;
-    top: -20px;
-    color: #fff;
-    filter: drop-shadow(0 0 5px #ff3366);
-    pointer-events: none;
-    z-index: 1;
-    animation: fall linear forwards;
-}
-
-@keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); }
-}
-
-@keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+.btn-click:hover {
+    background: rgba(255, 51, 102, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 51, 102, 0.8);
+    letter-spacing: 2px;
 }
