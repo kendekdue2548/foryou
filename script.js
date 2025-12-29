@@ -1,31 +1,37 @@
-function createHeartFrame() {
-    const container = document.getElementById('heart-frame-container');
-    container.innerHTML = ''; 
-    
-    // 1. ลดจำนวนหัวใจลงเหลือ 36 เพื่อไม่ให้เบียดกันจนซ้อนทับ
-    const totalHearts = 36; 
+function drawEnvelope() {
+    const container = document.getElementById('envelope-container');
+    container.innerHTML = '';
     const screenWidth = window.innerWidth / 2;
     const screenHeight = window.innerHeight / 2;
     
-    // 2. ปรับขนาด scale เป็น 32 เพื่อให้กรอบใหญ่พ้นตัวหนังสือ
-    const scale = 32; 
+    const width = 400;  // ความกว้างซอง
+    const height = 250; // ความสูงซอง
+    const step = 25;    // ระยะห่างระหว่างตัว ♡
 
-    for (let i = 0; i < totalHearts; i++) {
-        const t = (i / totalHearts) * Math.PI * 2;
-        
-        // สูตร Heart Curve (เนียนกว่าเดิม)
-        const x = 16 * Math.pow(Math.sin(t), 3);
-        const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    function addDot(x, y) {
+        const dot = document.createElement('div');
+        dot.className = 'envelope-dot';
+        dot.innerHTML = '♡';
+        dot.style.left = (screenWidth + x) + 'px';
+        dot.style.top = (screenHeight + y) + 'px';
+        container.appendChild(dot);
+    }
 
-        const heart = document.createElement('div');
-        heart.className = 'frame-heart';
-        heart.innerHTML = '♡';
-        
-        // 3. ปรับตำแหน่งแกน Y ให้สมดุล (+30) เพื่อไม่ให้ส่วนโค้งบนทับ "Happy New Year"
-        heart.style.left = (screenWidth + x * scale) + 'px';
-        heart.style.top = (screenHeight + y * scale + 30) + 'px';
-        
-        container.appendChild(heart);
+    // วาดสี่เหลี่ยมรอบนอก
+    for (let x = -width/2; x <= width/2; x += step) {
+        addDot(x, -height/2); // บน
+        addDot(x, height/2);  // ล่าง
+    }
+    for (let y = -height/2; y <= height/2; y += step) {
+        addDot(-width/2, y); // ซ้าย
+        addDot(width/2, y);  // ขวา
+    }
+
+    // วาดเส้นทแยงมุมเป็นฝาซองจดหมาย (รูปตัว V)
+    for (let x = -width/2; x <= width/2; x += step) {
+        // เส้นเฉียงลงมาบรรจบกันตรงกลาง
+        let y = (Math.abs(x) / (width/2)) * (height/2) - (height/2);
+        addDot(x, y);
     }
 }
 
@@ -42,11 +48,9 @@ function createFallingHeart() {
     setTimeout(() => { heart.remove(); }, 8000);
 }
 
-// เริ่มการทำงาน
-createHeartFrame();
+// เริ่มทำงาน
+drawEnvelope();
 setInterval(createFallingHeart, 250);
 
 // ปรับขนาดตามหน้าจอ
-window.onresize = () => {
-    createHeartFrame();
-};
+window.onresize = drawEnvelope;
