@@ -4,7 +4,8 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #000;
+    /* พื้นหลังไล่สีม่วงเข้ม-ดำ ดูหรูหรา */
+    background: radial-gradient(circle at center, #2d0b16 0%, #000000 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,36 +15,42 @@ body, html {
     text-align: center;
     color: white;
     z-index: 10;
-    pointer-events: none;
 }
 
 .text-hny {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
+    font-size: 5rem;
     margin: 0;
-    text-shadow: 0 0 15px #ff3366;
+    color: #fff;
+    /* แสงเรืองรองสีชมพู */
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 40px #ff3366;
+    animation: floating 3s ease-in-out infinite;
 }
 
 .text-love {
     font-family: 'Kanit', sans-serif;
     font-size: 1.2rem;
-    letter-spacing: 4px;
-    opacity: 0.8;
+    letter-spacing: 8px;
+    margin-top: 10px;
+    color: #ffb3c1;
 }
 
-/* ตัว ♡ ที่ประกอบเป็นซองจดหมาย */
+/* ซองจดหมาย ♡ */
 .envelope-dot {
     position: absolute;
-    color: #ffffff;
-    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
     text-shadow: 0 0 5px #ff3366;
     transform: translate(-50%, -50%);
+    transition: all 0.5s;
 }
 
+/* หัวใจตก */
 .falling-heart {
     position: absolute;
     top: -20px;
-    color: #ffffff;
+    color: #fff;
+    filter: drop-shadow(0 0 5px #ff3366);
     pointer-events: none;
     z-index: 1;
     animation: fall linear forwards;
@@ -51,4 +58,9 @@ body, html {
 
 @keyframes fall {
     to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
