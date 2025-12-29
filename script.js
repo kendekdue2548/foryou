@@ -1,11 +1,13 @@
 function createHeartFrame() {
     const container = document.getElementById('heart-frame-container');
-    const totalHearts = 60; // เพิ่มจำนวนเพื่อให้จุดเรียงต่อกันสวยขึ้น
+    container.innerHTML = ''; // ล้างค่าเก่าก่อนสร้างใหม่
+    
+    const totalHearts = 50; 
     const screenWidth = window.innerWidth / 2;
     const screenHeight = window.innerHeight / 2;
     
-    // ขยายค่า scale จาก 15 เป็น 22 เพื่อให้กรอบขยับห่างจากข้อความ
-    const scale = 22; 
+    // ปรับ scale เป็น 28 เพื่อขยายกรอบให้กว้างพ้นตัวหนังสือ
+    const scale = 28; 
 
     for (let i = 0; i < totalHearts; i++) {
         const t = (i / totalHearts) * Math.PI * 2;
@@ -18,8 +20,9 @@ function createHeartFrame() {
         heart.className = 'frame-heart';
         heart.innerHTML = '♡';
         
+        // ขยับแกน Y ลงมานิดหน่อย (+20) เพื่อให้ข้อความอยู่กึ่งกลางรูปหัวใจพอดี
         heart.style.left = (screenWidth + x * scale) + 'px';
-        heart.style.top = (screenHeight + y * scale) + 'px';
+        heart.style.top = (screenHeight + y * scale + 20) + 'px';
         
         container.appendChild(heart);
     }
@@ -31,19 +34,18 @@ function createFallingHeart() {
     heart.className = 'falling-heart';
     heart.innerHTML = '❤';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = Math.random() * 8 + 6 + 'px'; // เล็กจิ๋วตามสั่ง
+    heart.style.fontSize = Math.random() * 8 + 6 + 'px';
     heart.style.animationDuration = Math.random() * 3 + 5 + 's';
     heart.style.opacity = Math.random() * 0.4 + 0.2;
     container.appendChild(heart);
     setTimeout(() => { heart.remove(); }, 8000);
 }
 
-// เริ่มทำงาน
+// เริ่มการทำงาน
 createHeartFrame();
 setInterval(createFallingHeart, 250);
 
-// ปรับตำแหน่งกรอบอัตโนมัติเมื่อย่อหน้าจอ
+// ปรับขนาดตามหน้าจอ
 window.onresize = () => {
-    document.getElementById('heart-frame-container').innerHTML = '';
     createHeartFrame();
 };
