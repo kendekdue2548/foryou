@@ -1,31 +1,50 @@
-function createHeartRain() {
-    const container = document.getElementById('heart-container');
-    const heart = document.createElement('div');
-    
-    heart.className = 'falling-heart';
-    heart.innerHTML = '❤';
-    
-    // 1. สุ่มตำแหน่งแนวนอน (0 - 100vw)
-    heart.style.left = Math.random() * 100 + 'vw';
-    
-    // 2. สุ่มขนาดให้เล็ก (8px - 16px)
-    const size = Math.random() * 8 + 8 + 'px';
-    heart.style.fontSize = size;
-    
-    // 3. สุ่มความเร็วในการตก (4 - 8 วินาที)
-    const duration = Math.random() * 4 + 4 + 's';
-    heart.style.animationDuration = duration;
-    
-    // 4. สุ่มค่าความโปร่งใส (0.3 - 0.8)
-    heart.style.opacity = Math.random() * 0.5 + 0.3;
+// 1. สร้างกรอบรูปหัวใจจากตัวอักษร ♡
+function createHeartFrame() {
+    const container = document.getElementById('heart-frame-container');
+    const totalHearts = 40; // จำนวนดวงหัวใจที่นำมาเรียง
+    const screenWidth = window.innerWidth / 2;
+    const screenHeight = window.innerHeight / 2;
+    const scale = 15; // ขนาดของกรอบหัวใจ
 
-    container.appendChild(heart);
+    for (let i = 0; i < totalHearts; i++) {
+        const t = (i / totalHearts) * Math.PI * 2;
+        
+        // สูตรคำนวณตำแหน่งรูปหัวใจ (Heart Curve Equation)
+        const x = 16 * Math.pow(Math.sin(t), 3);
+        const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
 
-    // ลบ Element ออกหลังจากตกเสร็จเพื่อประหยัด RAM
-    setTimeout(() => {
-        heart.remove();
-    }, 8000);
+        const heart = document.createElement('div');
+        heart.className = 'frame-heart';
+        heart.innerHTML = '♡';
+        
+        // วางตำแหน่งกึ่งกลางหน้าจอ
+        heart.style.left = (screenWidth + x * scale) + 'px';
+        heart.style.top = (screenHeight + y * scale) + 'px';
+        
+        container.appendChild(heart);
+    }
 }
 
-// สร้างหัวใจใหม่ทุกๆ 150 มิลลิวินาที
-setInterval(createHeartRain, 150);
+// 2. สร้างหัวใจสีขาวตกลงมา (แบบเดิม)
+function createFallingHeart() {
+    const container = document.getElementById('heart-rain');
+    const heart = document.createElement('div');
+    heart.className = 'falling-heart';
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = Math.random() * 8 + 8 + 'px';
+    heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+    heart.style.opacity = Math.random() * 0.5 + 0.3;
+    container.appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 7000);
+}
+
+// เรียกใช้งาน
+createHeartFrame();
+setInterval(createFallingHeart, 200);
+
+// ปรับขนาดกรอบเมื่อเปลี่ยนขนาดหน้าจอ
+window.onresize = () => {
+    document.getElementById('heart-frame-container').innerHTML = '';
+    createHeartFrame();
+};
