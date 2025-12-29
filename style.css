@@ -4,62 +4,58 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #000; /* พื้นหลังดำ */
+    font-family: 'Kanit', sans-serif;
 }
 
-.love-container {
+/* เนื้อหาตรงกลาง */
+.main-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     color: white;
     z-index: 10;
 }
 
-.main-title {
+.text-hny {
     font-family: 'Great Vibes', cursive;
     font-size: 5rem;
     margin: 0;
-    text-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366;
-    animation: glow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px #ff3366;
 }
 
-.sub-title {
-    font-family: 'Kanit', sans-serif;
-    font-size: 2rem;
-    margin-top: -10px;
+.heart-center {
+    color: #ff3366;
+    font-size: 2.5rem;
+    margin: 15px 0;
+    animation: heartBeat 1.5s infinite;
+}
+
+.text-love {
+    font-size: 1.5rem;
     letter-spacing: 5px;
     opacity: 0.8;
 }
 
-.heart {
-    color: #ff3366;
-    font-size: 3rem;
-    margin: 20px 0;
-    animation: pulse 1.5s infinite;
-    display: inline-block;
-}
-
-/* แอนิเมชัน */
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff3366; }
-    to { text-shadow: 0 0 20px #fff, 0 0 40px #ff80ab, 0 0 50px #ff3366; }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-}
-
-.sparkle {
+/* หัวใจสีขาวเม็ดเล็กที่ตกลงมา */
+.falling-heart {
     position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: twinkle var(--duration) infinite;
+    top: -20px;
+    color: #ffffff; /* สีขาว */
+    pointer-events: none;
+    z-index: 1;
+    animation: fallAnimation linear forwards;
 }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.5); }
+@keyframes fallAnimation {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
