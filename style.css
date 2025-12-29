@@ -19,25 +19,25 @@ body, html {
 
 .text-hny {
     font-family: 'Great Vibes', cursive;
-    font-size: 4.5rem;
+    font-size: 4rem;
     margin: 0;
     text-shadow: 0 0 15px #ff3366;
 }
 
 .text-love {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 5px;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
     opacity: 0.8;
 }
 
-.frame-heart {
+/* ตัว ♡ ที่ประกอบเป็นซองจดหมาย */
+.envelope-dot {
     position: absolute;
     color: #ffffff;
-    font-size: 16px;
-    text-shadow: 0 0 8px #ff3366;
+    font-size: 14px;
+    text-shadow: 0 0 5px #ff3366;
     transform: translate(-50%, -50%);
-    user-select: none;
 }
 
 .falling-heart {
