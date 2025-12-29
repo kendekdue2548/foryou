@@ -1,29 +1,92 @@
-/* โค้ดเดิมคงไว้ แล้วเพิ่มส่วนนี้ต่อท้ายครับ */
+/* ลบของเก่าออกแล้ววางตัวนี้แทนครับ */
 
-.button-wrapper {
-    margin-top: 30px;
-    z-index: 20;
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* ใช้ vw/vh เพื่อให้เต็มหน้าจอแน่นอน */
+    height: 100vh;
+    overflow: hidden;
+    /* พื้นหลังไล่สีม่วงเข้ม-ดำ */
+    background: radial-gradient(circle at center, #2d0b16 0%, #000000 100%) no-repeat fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
-.btn-click {
-    padding: 12px 35px;
+.main-content {
+    position: relative; /* เพิ่มเพื่อให้ z-index ทำงานถูกต้อง */
+    text-align: center;
+    color: white;
+    z-index: 100; /* ดันขึ้นมาข้างหน้าสุด */
+}
+
+.text-hny {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    margin: 0;
+    color: #fff;
+    /* แสงเรืองรองสีชมพู */
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 40px #ff3366;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.text-love {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    margin-top: 10px;
+    color: #ffb3c1;
+}
+
+/* ปุ่มกดสไตล์กระจก (Glassmorphism) */
+.btn-click {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 30px;
+    font-family: 'Kanit', sans-serif;
     color: white;
     text-decoration: none;
-    background: rgba(255, 51, 102, 0.2); /* สีชมพูโปร่งแสง */
+    background: rgba(255, 51, 102, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
-    backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้า */
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
-    display: inline-block;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .btn-click:hover {
     background: rgba(255, 51, 102, 0.6);
-    transform: scale(1.1);
-    box-shadow: 0 0 25px rgba(255, 51, 102, 0.8);
-    letter-spacing: 2px;
+    box-shadow: 0 0 20px #ff3366;
+    transform: scale(1.05);
+}
+
+/* ซองจดหมาย ♡ */
+.envelope-dot {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-shadow: 0 0 5px #ff3366;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+/* หัวใจตก */
+.falling-heart {
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    filter: drop-shadow(0 0 5px #ff3366);
+    pointer-events: none;
+    z-index: 1;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
